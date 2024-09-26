@@ -5,11 +5,12 @@
     android:orientation="vertical"
     android:gravity="center">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="KoChat"
+        android:text="회원가입"
         android:textSize="64sp"
         android:textStyle="bold"
         android:layout_margin="16dp"/>
@@ -21,32 +22,33 @@
         android:layout_margin="16dp"/>
 
     <EditText
-        android:id="@+id/id_edit"
+        android:id="@+id/name_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID (email)"
+        android:hint="name"
         android:textSize="32sp"
         android:layout_margin="16dp"
         android:inputType="textEmailAddress"
         />
 
     <EditText
-        android:id="@+id/pw_edit"
+        android:id="@+id/email_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="PW"
+        android:hint="email"
         android:textSize="32sp"
         android:layout_margin="16dp"
         android:inputType="textPassword"
         />
 
-    <Button
-        android:id="@+id/sign_in_btn"
+    <EditText
+        android:id="@+id/pw_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로그인"
-        android:textSize="24sp"
+        android:hint="password"
+        android:textSize="32sp"
         android:layout_margin="16dp"
+        android:inputType="textPassword"
         />
 
     <Button
@@ -57,5 +59,6 @@
         android:textSize="24sp"
         android:layout_margin="16dp"
         />
+
 
 </LinearLayout>
