@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.javaapp.chatting.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
