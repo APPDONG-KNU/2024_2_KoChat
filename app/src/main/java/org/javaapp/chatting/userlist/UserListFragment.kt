@@ -1,13 +1,39 @@
 package org.javaapp.chatting.userlist
 
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.javaapp.chatting.databinding.FragmentUserListBinding
 import org.javaapp.chatting.databinding.ItemUserBinding
 
 class UserListFragment : Fragment() {
+    private lateinit var binding : FragmentUserListBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentUserListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.userListRecyclerview.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = UserAdapter(emptyList());
+        }
+    }
 
     // 리사이클러뷰 홀더
     private inner class UserHolder(private val binding : ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -23,15 +49,18 @@ class UserListFragment : Fragment() {
 
         // 뷰홀더 생성
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
-           val binding = ItemUserBinding.inflate(layoutInflater, parent, false)
-
+            // 홀더에 바인딩 정보를 담아 반환
+            val binding = ItemUserBinding.inflate(layoutInflater, parent, false)
             return UserHolder(binding)
         }
 
+        // 리스트의 원소 개수 정보 받기
         override fun getItemCount(): Int {
+            // 리스트 원소의 개수 반환
             return userList.size
         }
 
+        // 홀더와 뷰 연결(바인딩)
         override fun onBindViewHolder(holder: UserHolder, position: Int) {
             holder.bind(userList[position])
         }
