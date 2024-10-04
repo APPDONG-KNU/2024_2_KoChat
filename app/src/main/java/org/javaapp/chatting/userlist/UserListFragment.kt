@@ -31,7 +31,7 @@ class UserListFragment : Fragment() {
 
         binding.userListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = UserAdapter(emptyList());
+            adapter = UserAdapter(emptyList()); // TODO 실제 데이터 리스트
         }
     }
 
