@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.javaapp.chatting.chatlist.ChatListFragment
 import org.javaapp.chatting.databinding.ActivityMainBinding
 import org.javaapp.chatting.userlist.User
 import org.javaapp.chatting.userlist.UserListFragment
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var currentUser : FirebaseUser? = null // Firebase currentUser
 
     private val userListFragment = UserListFragment() // 사용자 리스트 프래그먼트
+    private val chatListFragment = ChatListFragment() // 채팅방 리스트 프래그먼트
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.chat_list -> {
-
+                    replaceFragment(chatListFragment) // 프래그먼트 교체 
                     return@setOnItemSelectedListener true
                 }
                 R.id.mypage -> {
