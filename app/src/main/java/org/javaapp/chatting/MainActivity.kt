@@ -8,16 +8,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.javaapp.chatting.databinding.ActivityMainBinding
+import org.javaapp.chatting.userlist.User
+import org.javaapp.chatting.userlist.UserListFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding // view binding
     private lateinit var auth : FirebaseAuth // Firebase auth
     private var currentUser : FirebaseUser? = null // Firebase currentUser
+
+    private val userListFragment = UserListFragment() // 사용자 리스트 프래그먼트
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +47,39 @@ class MainActivity : AppCompatActivity() {
             // 메인 액티비티 종료
             finish()
         }
+
+        // 바텀 네비게이션뷰 리스너 설정
+        binding.bottomNavigation.setOnItemSelectedListener {menuItem ->
+            when(menuItem.itemId) {
+                R.id.user_list -> {
+                    replaceFragment(userListFragment) // 프래그먼트 교체
+                    return@setOnItemSelectedListener true
+                }
+                R.id.chat_list -> {
+
+                    return@setOnItemSelectedListener true
+                }
+                R.id.mypage -> {
+
+                    return@setOnItemSelectedListener true
+                }
+                else ->  {
+                    return@setOnItemSelectedListener false
+                }
+            }
+        }
     }
+
+    // 프래그먼트 교체
+    private fun replaceFragment(fragment : Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, fragment)
+            commit()
+        }
+    }
+
+
+
 
     /////////////////////////////// 액션바 메뉴 /////////////////////////////////////
     // 메뉴 생성
