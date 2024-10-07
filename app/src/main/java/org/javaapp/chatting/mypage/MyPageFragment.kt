@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.javaapp.chatting.SignInActivity
-import org.javaapp.chatting.databinding.FragmentChatListBinding
 import org.javaapp.chatting.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {
@@ -44,8 +44,13 @@ class MyPageFragment : Fragment() {
         binding.saveBtn.setOnClickListener {
             val name = binding.nameEdit.text.toString()
             val statusMessage = binding.statusMessageEdit.text.toString()
+
+            if (name.isNullOrBlank()) {
+                Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             
-            // 저장
+            // TODO 업데이트 및 저장
         }
 
         // 로그아웃 버튼 클릭 리스너 설정

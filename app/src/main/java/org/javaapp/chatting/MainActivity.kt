@@ -2,22 +2,15 @@ package org.javaapp.chatting
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.google.android.play.integrity.internal.m
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.javaapp.chatting.chatlist.ChatListFragment
+import org.javaapp.chatting.chatroomlist.ChatRoomListFragment
 import org.javaapp.chatting.databinding.ActivityMainBinding
 import org.javaapp.chatting.mypage.MyPageFragment
-import org.javaapp.chatting.userlist.User
 import org.javaapp.chatting.userlist.UserListFragment
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var currentUser : FirebaseUser? = null // Firebase currentUser
 
     private val userListFragment = UserListFragment() // 사용자 리스트 프래그먼트
-    private val chatListFragment = ChatListFragment() // 채팅방 리스트 프래그먼트
+    private val chatRoomListFragment = ChatRoomListFragment() // 채팅방 리스트 프래그먼트
     private val myPageFragment = MyPageFragment() // 마이페이지 프래그먼트
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+
         // 앱 실행 시 기본으로 보여줄 프래그먼트로 UserListFragment 설정
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, userListFragment).commit()
 
@@ -58,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.chat_list -> {
-                    replaceFragment(chatListFragment) // 프래그먼트 교체
+                    replaceFragment(chatRoomListFragment) // 프래그먼트 교체
                     return@setOnItemSelectedListener true
                 }
                 R.id.mypage -> {

@@ -1,6 +1,6 @@
-package org.javaapp.chatting.chatlist
+package org.javaapp.chatting.chatroomlist
 
-data class Chat(
+data class ChatRoom(
     val id : String,
     val otherUserName : String,
     val lastMessage : String,

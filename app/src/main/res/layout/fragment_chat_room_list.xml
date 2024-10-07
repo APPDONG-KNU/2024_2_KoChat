@@ -7,13 +7,13 @@
     android:orientation="horizontal">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chat_list_recyclerview"
+        android:id="@+id/chat_room_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_chat" />
+        tools:listitem="@layout/item_chat_room" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
