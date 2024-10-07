@@ -37,6 +37,9 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // TODO 현재 사용자 이름과 상태 메시지 보여주기
+
+
         // 저장하기 버튼 클릭 리스너 설정
         binding.saveBtn.setOnClickListener {
             val name = binding.nameEdit.text.toString()
