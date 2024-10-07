@@ -1,4 +1,4 @@
-package org.javaapp.chatting.chatlist
+package org.javaapp.chatting.chatroomlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.javaapp.chatting.chatList
-import org.javaapp.chatting.databinding.FragmentChatListBinding
-import org.javaapp.chatting.databinding.FragmentUserListBinding
-import org.javaapp.chatting.databinding.ItemChatBinding
-import org.javaapp.chatting.databinding.ItemUserBinding
-import org.javaapp.chatting.userlist.User
+import org.javaapp.chatting.databinding.FragmentChatRoomListBinding
+import org.javaapp.chatting.databinding.ItemChatRoomBinding
 
-class ChatListFragment : Fragment() {
-    private lateinit var binding : FragmentChatListBinding
+class ChatRoomListFragment : Fragment() {
+    private lateinit var binding : FragmentChatRoomListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class ChatListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentChatListBinding.inflate(inflater, container, false)
+        binding = FragmentChatRoomListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,15 +31,15 @@ class ChatListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 리사이클러뷰
-        binding.chatListRecyclerview.apply {
+        binding.chatRoomListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = ChatAdapter(chatList); // TODO 실제 데이터 리스트
         }
     }
 
     // 리사이클러뷰 홀더
-    private inner class ChatHolder(private val binding : ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(chat : Chat) {
+    private inner class ChatHolder(private val binding : ItemChatRoomBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(chat : ChatRoom) {
             // binding.profileImage.~~ TODO 프로필 이미지
             binding.nameText.text = chat.otherUserName // 이름
             binding.lastMessageText.text = chat.lastMessage // 상태메시지
@@ -50,12 +47,12 @@ class ChatListFragment : Fragment() {
     }
 
     // 리사이클러뷰 어댑터
-    private inner class ChatAdapter(private val chatList : List<Chat>) : RecyclerView.Adapter<ChatHolder>() {
+    private inner class ChatAdapter(private val chatList : List<ChatRoom>) : RecyclerView.Adapter<ChatHolder>() {
 
         // 뷰홀더 생성
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
             // 홀더에 바인딩 정보를 담아 반환
-            val binding = ItemChatBinding.inflate(layoutInflater, parent, false)
+            val binding = ItemChatRoomBinding.inflate(layoutInflater, parent, false)
             return ChatHolder(binding)
         }
 
