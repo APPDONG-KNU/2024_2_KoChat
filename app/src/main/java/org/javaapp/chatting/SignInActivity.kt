@@ -19,6 +19,8 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //---------------------------
+
         auth = Firebase.auth // Firebase auth
 
         // 로그인 버튼 클릭 리스너
@@ -34,7 +36,7 @@ class SignInActivity : AppCompatActivity() {
             }
 
             // 괜찮다면 로그인
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {task->
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) { // 로그인 성공
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                     

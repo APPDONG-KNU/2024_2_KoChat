@@ -36,6 +36,8 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {task->
                 if (task.isSuccessful) { // 회원가입 성공
                     Toast.makeText(this, "회원가입&로그인 성공", Toast.LENGTH_SHORT).show()
+                    
+                    // TODO 데이터베이스 User 항목에 사용자 정보 추가 및 저장(id, name, statusMessage)
 
                     // 메인 액티비티로 이동
                     val intent = Intent(this, MainActivity::class.java)
