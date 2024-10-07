@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        // 앱 실행 시 기본으로 보여줄 프래그먼트로 UserListFragment 설정
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, userListFragment).commit()
+
         // 바텀 네비게이션뷰 리스너 설정
         binding.bottomNavigation.setOnItemSelectedListener {menuItem ->
             when(menuItem.itemId) {
@@ -77,38 +80,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-    /////////////////////////////// 액션바 메뉴 /////////////////////////////////////
-    // 메뉴 생성
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // 메뉴 리소스 파일을 인플레이트하여 액션바에 메뉴 추가
-        menuInflater.inflate(R.menu.menu_main, menu);
-        
-        return true
-    }
-
-    // 메뉴 선택 이벤트 처리
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // 사용자가 선택한 메뉴의 ID 확인
-        return when(item.itemId) {
-            R.id.log_out -> { // 로그아웃 메뉴를 선택했을 경우
-                // 로그아웃
-                auth.signOut()
-
-                // 로그인 액티비티로 이동
-                val intent = Intent(this, SignInActivity::class.java)
-                startActivity(intent)
-
-                // 현재(메인) 액티비티 종료
-                finish()
-
-                true
-            } else -> {
-                false
-            }
-        }
-    }
-    //////////////////////////////////////////////////////////////////////////////////
 }
