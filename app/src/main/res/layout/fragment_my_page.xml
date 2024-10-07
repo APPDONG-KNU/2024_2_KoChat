@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="내 정보"
-        android:textSize="48sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:layout_margin="16dp"/>
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이름"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:layout_margin="16dp"
         android:inputType="textPersonName"
         />
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="상태메시지"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:layout_margin="16dp"
         android:inputType="text"
         />
