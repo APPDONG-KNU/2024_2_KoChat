@@ -32,6 +32,7 @@ class ChatListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 리사이클러뷰
         binding.chatListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = ChatAdapter(emptyList()); // TODO 실제 데이터 리스트
