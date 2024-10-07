@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.javaapp.chatting.databinding.FragmentUserListBinding
 import org.javaapp.chatting.databinding.ItemUserBinding
+import org.javaapp.chatting.userList
 
 class UserListFragment : Fragment() {
     private lateinit var binding : FragmentUserListBinding
@@ -31,7 +32,7 @@ class UserListFragment : Fragment() {
 
         binding.userListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = UserAdapter(emptyList()); // TODO 실제 데이터 리스트
+            adapter = UserAdapter(userList); // TODO 실제 데이터 리스트
         }
     }
 

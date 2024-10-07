@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.javaapp.chatting.chatList
 import org.javaapp.chatting.databinding.FragmentChatListBinding
 import org.javaapp.chatting.databinding.FragmentUserListBinding
 import org.javaapp.chatting.databinding.ItemChatBinding
@@ -35,7 +36,7 @@ class ChatListFragment : Fragment() {
         // 리사이클러뷰
         binding.chatListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = ChatAdapter(emptyList()); // TODO 실제 데이터 리스트
+            adapter = ChatAdapter(chatList); // TODO 실제 데이터 리스트
         }
     }
 
