@@ -33,12 +33,12 @@ class ChatRoomListFragment : Fragment() {
         // 리사이클러뷰
         binding.chatRoomListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = ChatAdapter(chatList); // TODO 실제 데이터 리스트
+            adapter = ChatRoomAdapter(chatList); // TODO 실제 데이터 리스트
         }
     }
 
     // 리사이클러뷰 홀더
-    private inner class ChatHolder(private val binding : ItemChatRoomBinding) : RecyclerView.ViewHolder(binding.root) {
+    private inner class ChatRoomHolder(private val binding : ItemChatRoomBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(chat : ChatRoom) {
             // binding.profileImage.~~ TODO 프로필 이미지
             binding.nameText.text = chat.otherUserName // 이름
@@ -47,13 +47,13 @@ class ChatRoomListFragment : Fragment() {
     }
 
     // 리사이클러뷰 어댑터
-    private inner class ChatAdapter(private val chatList : List<ChatRoom>) : RecyclerView.Adapter<ChatHolder>() {
+    private inner class ChatRoomAdapter(private val chatList : List<ChatRoom>) : RecyclerView.Adapter<ChatRoomHolder>() {
 
         // 뷰홀더 생성
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatRoomHolder {
             // 홀더에 바인딩 정보를 담아 반환
             val binding = ItemChatRoomBinding.inflate(layoutInflater, parent, false)
-            return ChatHolder(binding)
+            return ChatRoomHolder(binding)
         }
 
         // 리스트의 원소 개수 정보 받기
@@ -63,7 +63,7 @@ class ChatRoomListFragment : Fragment() {
         }
 
         // 홀더와 뷰 연결(바인딩)
-        override fun onBindViewHolder(holder: ChatHolder, position: Int) {
+        override fun onBindViewHolder(holder: ChatRoomHolder, position: Int) {
             holder.bind(chatList[position])
         }
 
