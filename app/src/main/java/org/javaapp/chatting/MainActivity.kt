@@ -2,6 +2,7 @@ package org.javaapp.chatting
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -72,6 +73,8 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragment_container, fragment)
             commit()
         }
+
+
     }
 
 }
