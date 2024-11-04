@@ -25,6 +25,8 @@
         <activity android:name=".SignInActivity"/>
 
         <activity android:name=".SignUpActivity"/>
+
+        <activity android:name=".chatmsg.ChatMsgActivity"/>
     </application>
 
 </manifest>
