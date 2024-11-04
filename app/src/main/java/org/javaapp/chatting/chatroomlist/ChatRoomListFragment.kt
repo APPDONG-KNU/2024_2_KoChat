@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.javaapp.chatting.chatList
+import org.javaapp.chatting.chatRoomList
 import org.javaapp.chatting.databinding.FragmentChatRoomListBinding
 import org.javaapp.chatting.databinding.ItemChatRoomBinding
 
@@ -33,21 +33,22 @@ class ChatRoomListFragment : Fragment() {
         // 리사이클러뷰
         binding.chatRoomListRecyclerview.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = ChatRoomAdapter(chatList); // TODO 실제 데이터 리스트
+            adapter = ChatRoomAdapter(chatRoomList); // TODO 실제 데이터 리스트
         }
     }
 
     // 리사이클러뷰 홀더
     private inner class ChatRoomHolder(private val binding : ItemChatRoomBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(chat : ChatRoom) {
+        fun bind(chatRoom : ChatRoom) {
             // binding.profileImage.~~ TODO 프로필 이미지
-            binding.nameText.text = chat.otherUserName // 이름
-            binding.lastMessageText.text = chat.lastMessage // 상태메시지
+            binding.nameText.text = chatRoom.otherUserName // 이름
+            binding.lastMessageText.text = chatRoom.lastMessage // 상태메시지
         }
     }
 
+
     // 리사이클러뷰 어댑터
-    private inner class ChatRoomAdapter(private val chatList : List<ChatRoom>) : RecyclerView.Adapter<ChatRoomHolder>() {
+    private inner class ChatRoomAdapter(private val chatRoomList : List<ChatRoom>) : RecyclerView.Adapter<ChatRoomHolder>() {
 
         // 뷰홀더 생성
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatRoomHolder {
@@ -59,12 +60,12 @@ class ChatRoomListFragment : Fragment() {
         // 리스트의 원소 개수 정보 받기
         override fun getItemCount(): Int {
             // 리스트 원소의 개수 반환
-            return chatList.size
+            return chatRoomList.size
         }
 
         // 홀더와 뷰 연결(바인딩)
         override fun onBindViewHolder(holder: ChatRoomHolder, position: Int) {
-            holder.bind(chatList[position])
+            holder.bind(chatRoomList[position])
         }
 
     }

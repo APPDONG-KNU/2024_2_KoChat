@@ -1,5 +1,6 @@
 package org.javaapp.chatting
 
+import org.javaapp.chatting.chatmsg.ChatMsg
 import org.javaapp.chatting.chatroomlist.ChatRoom
 import org.javaapp.chatting.userlist.User
 
@@ -19,7 +20,7 @@ val userList : List<User> = mutableListOf(
     User("13", "user13", "status msg 13"),
 )
 
-val chatList : List<ChatRoom> = mutableListOf(
+val chatRoomList : List<ChatRoom> = mutableListOf(
     ChatRoom("1", "user01", "last msg 01"),
     ChatRoom("2", "user02", "last msg 02"),
     ChatRoom("3", "user03", "last msg 03"),
@@ -30,4 +31,17 @@ val chatList : List<ChatRoom> = mutableListOf(
     ChatRoom("8", "user08", "last msg 08"),
     ChatRoom("9", "user09", "last msg 09"),
     ChatRoom("10", "user10", "last msg 10"),
+)
+
+val chatMsgList : List<ChatMsg> = mutableListOf(
+    ChatMsg("1", "user01", " msg 01"),
+    ChatMsg("2", "user02", " msg 02"),
+    ChatMsg("3", "user03", " msg 03"),
+    ChatMsg("4", "user04", " msg 04"),
+    ChatMsg("5", "user05", " msg 05"),
+    ChatMsg("6", "user06", " msg 06"),
+    ChatMsg("7", "user07", " msg 07"),
+    ChatMsg("8", "user08", " msg 08"),
+    ChatMsg("9", "user09", " msg 09"),
+    ChatMsg("10", "user10", " msg 10"),
 )
