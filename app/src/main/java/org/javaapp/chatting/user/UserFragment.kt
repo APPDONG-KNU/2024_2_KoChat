@@ -49,28 +49,7 @@ class UserFragment : Fragment() {
             adapter = UserAdapter(emptyList()); // TODO 실제 데이터 리스트
         }
 
-        // 사용자 리스트 불러오기
-        database.child(Key.DB_USER).addListenerForSingleValueEvent(object : ValueEventListener {
-            // 데이터를 가져오는데 성공했을 경우 실행
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val userList = mutableListOf<User>() // 사용자 정보를 담을 리스트
-
-                snapshot.children.forEach { // 데이터베이스 snapshot의 children을 순회
-                    val user = it.getValue(User::class.java) ?: return // 데이터베이스의 User 정보가 User 데이터 클래스에 매핑되지 않을 경우, 리턴
-
-                    if (user.id != currentUser.uid) { // 나(현재 사용자)를 제외한 다른 사용자 정보 리스트에 추가
-                        userList.add(user)
-                    }
-                }
-
-                binding.userListRecyclerview.adapter = UserAdapter(userList) // TODO 어댑터 재설정이 아닌 데이터 추가로 리팩토링
-            }
-
-            // 데이터를 가져오는데 실패한 경우 실행
-            override fun onCancelled(error: DatabaseError) {
-                // TODO 에러 처리
-            }
-        })
+        fetchUser()
     }
 
     // 리사이클러뷰 홀더
@@ -108,5 +87,30 @@ class UserFragment : Fragment() {
             holder.bind(userList[position])
         }
 
+    }
+
+    private fun fetchUser() {
+        // 사용자 리스트 불러오기
+        database.child(Key.DB_USER).addListenerForSingleValueEvent(object : ValueEventListener {
+            // 데이터를 가져오는데 성공했을 경우 실행
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userList = mutableListOf<User>() // 사용자 정보를 담을 리스트
+
+                snapshot.children.forEach { // 데이터베이스 snapshot의 children을 순회
+                    val user = it.getValue(User::class.java) ?: return // 데이터베이스의 User 정보가 User 데이터 클래스에 매핑되지 않을 경우, 리턴
+
+                    if (user.id != currentUser.uid) { // 나(현재 사용자)를 제외한 다른 사용자 정보 리스트에 추가
+                        userList.add(user)
+                    }
+                }
+
+                binding.userListRecyclerview.adapter = UserAdapter(userList) // TODO 어댑터 재설정이 아닌 데이터 추가로 리팩토링
+            }
+
+            // 데이터를 가져오는데 실패한 경우 실행
+            override fun onCancelled(error: DatabaseError) {
+                // TODO 에러 처리
+            }
+        })
     }
 }
