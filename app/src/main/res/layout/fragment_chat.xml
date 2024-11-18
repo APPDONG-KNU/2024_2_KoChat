@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chat_msg_recyclerview"
+        android:id="@+id/chat_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/line"
@@ -14,7 +14,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_chat_msg"
+        tools:listitem="@layout/item_chat"
          />
 
     <View
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/chat_msg_recyclerview"
+        app:layout_constraintTop_toBottomOf="@id/chat_recyclerview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/msg_box_layout"
         app:layout_constraintEnd_toEndOf="parent"
