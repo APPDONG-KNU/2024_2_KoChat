@@ -2,25 +2,24 @@ package org.javaapp.chatting
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.javaapp.chatting.chatroomlist.ChatRoomListFragment
+import org.javaapp.chatting.chat.ChatFragment
 import org.javaapp.chatting.databinding.ActivityMainBinding
 import org.javaapp.chatting.mypage.MyPageFragment
-import org.javaapp.chatting.userlist.UserListFragment
+import org.javaapp.chatting.user.UserFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding // view binding
     private lateinit var auth : FirebaseAuth // Firebase auth
     private var currentUser : FirebaseUser? = null // Firebase currentUser
 
-    private val userListFragment = UserListFragment() // 사용자 리스트 프래그먼트
-    private val chatRoomListFragment = ChatRoomListFragment() // 채팅방 리스트 프래그먼트
+    private val userFragment = UserFragment() // 사용자 리스트 프래그먼트
+    private val chatFragment = ChatFragment() // 단체 채팅 프래그먼트
     private val myPageFragment = MyPageFragment() // 마이페이지 프래그먼트
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,21 +38,22 @@ class MainActivity : AppCompatActivity() {
 
             // 메인 액티비티 종료
             finish()
+            return
         }
 
 
         // 앱 실행 시 기본으로 보여줄 프래그먼트로 UserListFragment 설정
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, userListFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, userFragment).commit()
 
         // 바텀 네비게이션뷰 리스너 설정
         binding.bottomNavigation.setOnItemSelectedListener {menuItem ->
             when(menuItem.itemId) {
                 R.id.user_list -> {
-                    replaceFragment(userListFragment) // 프래그먼트 교체
+                    replaceFragment(userFragment) // 프래그먼트 교체
                     return@setOnItemSelectedListener true
                 }
-                R.id.chat_list -> {
-                    replaceFragment(chatRoomListFragment) // 프래그먼트 교체
+                R.id.chat_msg -> {
+                    replaceFragment(chatFragment) // 프래그먼트 교체
                     return@setOnItemSelectedListener true
                 }
                 R.id.mypage -> {

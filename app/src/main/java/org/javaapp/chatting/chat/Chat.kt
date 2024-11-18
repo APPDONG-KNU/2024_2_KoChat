@@ -1,7 +1,8 @@
-package org.javaapp.chatting.chatmsg
+package org.javaapp.chatting.chat
 
-data class ChatMsg(
+data class Chat(
     val id : String? = null,
+    val timeStamp : String? = null,
     val userId : String? = null,
     val msg : String? = null,
 )
