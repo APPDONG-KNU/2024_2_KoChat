@@ -49,15 +49,13 @@ class SignUpActivity : AppCompatActivity() {
                     currentUser = auth.currentUser!! // 현재 사용자 정보(uid) 가져오기
                     database = Firebase.database(Key.DB_URL).reference // 데이터베이스 연결
 
-                    val userInfo = mutableMapOf<String, Any>( // 데이터베이스에 넣을 현재 사용자 정보(id, 이름, 상태메시지)
+                    val user = mutableMapOf<String, Any>( // 데이터베이스에 넣을 현재 사용자 정보(id, 이름, 상태메시지)
                         "id" to currentUser.uid,
                         "name" to name,
                         "statusMessage" to ""
                     )
 
-                    database.child(Key.DB_USER).child(currentUser.uid).updateChildren(userInfo) // 데이터베이스에 사용자 정보 업데이트(추가)
-
-
+                    database.child(Key.DB_USER).child(currentUser.uid).updateChildren(user) // 데이터베이스에 사용자 정보 업데이트(추가)
 
                     // 메인 액티비티로 이동
                     val intent = Intent(this, MainActivity::class.java)
