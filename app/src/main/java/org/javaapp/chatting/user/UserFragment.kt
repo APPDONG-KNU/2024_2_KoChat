@@ -95,7 +95,7 @@ class UserFragment : Fragment() {
 
     private fun fetchUser() {
         // 사용자 리스트 불러오기
-        database.child(Key.DB_USER).addListenerForSingleValueEvent(object : ValueEventListener {
+        database.child(Key.DB_USER).orderByChild("name").addListenerForSingleValueEvent(object : ValueEventListener {
             // 데이터를 가져오는데 성공했을 경우 실행
             override fun onDataChange(snapshot: DataSnapshot) {
                 var myInfo: User? = null // 나의 정보를 담을 객체
