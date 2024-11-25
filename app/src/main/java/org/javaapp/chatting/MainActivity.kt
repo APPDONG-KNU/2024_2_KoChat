@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // 앱 실행 시 기본으로 보여줄 프래그먼트로 UserListFragment 설정
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, userFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, userFragment).commit()
 
         // 바텀 네비게이션뷰 리스너 설정
         binding.bottomNavigation.setOnItemSelectedListener {menuItem ->

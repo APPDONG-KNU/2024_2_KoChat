@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -23,6 +25,9 @@ import org.javaapp.chatting.chatMsgList
 import org.javaapp.chatting.databinding.FragmentChatBinding
 import org.javaapp.chatting.databinding.ItemChatBinding
 import org.javaapp.chatting.user.User
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
 import javax.security.auth.callback.Callback
 
@@ -80,6 +85,9 @@ class ChatFragment : Fragment() {
                     gravity = Gravity.END
                 }
 
+                // 메시지 날짜
+                binding.dateAndTimeText.text = formatTimestamp(chat.timeStamp!!.toLong())
+
                 // 메시지 박스
                 binding.chatItemLayout.gravity = Gravity.END // 레이아웃의 오른쪽(END)에 배치
 
@@ -99,6 +107,9 @@ class ChatFragment : Fragment() {
                     text = chat.msg
                     gravity = Gravity.START // 메시지 박스 내 왼쪽(START)에 배치
                 }
+
+                // 메시지 날짜
+                binding.dateAndTimeText.text = formatTimestamp(chat.timeStamp!!.toLong())
                 
                 // 메시지 박스
                 binding.chatItemLayout.gravity = Gravity.START // 레이아웃의 왼쪽(START)에 배치
@@ -165,6 +176,9 @@ class ChatFragment : Fragment() {
                 }
 
                 binding.chatRecyclerview.adapter = ChatAdapter(chatLog)
+
+                // 리사이클러뷰 맨 아래로 스크롤
+                binding.chatRecyclerview.scrollToPosition(chatLog.size - 1)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -175,10 +189,16 @@ class ChatFragment : Fragment() {
 
     // 채팅 보내기
     private fun postChat() {
+        // 메세지 내용이 비어있을 경우, 토스트 메세지 출력
+        if (binding.msgEdit.text.isNullOrBlank()) {
+            Toast.makeText(requireContext(), "내용을 입력하세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val id = UUID.randomUUID().toString() // 현재 시간 기준으로 메시지 고유 아이디값 생성
         val timeStamp = System.currentTimeMillis().toString() // 시간순 정렬을 위한 타임스탬프
         val userId = currentUser.uid // 메시지 작성자 확인 및 이름을 가져오기 위한 아이디
-        val msg = formatText(binding.msgEdit.text.toString()) // 메시지 내용
+        val msg = binding.msgEdit.text.toString() // 메시지 내용
 
         val chat = mutableMapOf<String, Any>(
             "id" to id,
@@ -198,17 +218,17 @@ class ChatFragment : Fragment() {
             binding.msgEdit.windowToken,
             0
         )
+
+        // 리사이클러뷰 맨 아래로 스크롤
+        binding.chatRecyclerview.scrollToPosition(binding.chatRecyclerview.adapter!!.itemCount - 1)
     }
 
-    // 메시지 내용 포맷팅
-    private fun formatText(text : String) : String {
-        text.trim()
+    // 날짜 정보 포맷팅
+    fun formatTimestamp(timestamp: Long) : String {
+        val date = Date(timestamp)
+        val dateFormat = SimpleDateFormat("''yy.MM.dd.(E) HH:mm", Locale.getDefault())
 
-        while (text.endsWith("\n")) {
-            text.dropLast(1)
-        }
-
-        return text
+        return dateFormat.format(date)
     }
 
 }
