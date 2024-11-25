@@ -27,4 +27,13 @@
         android:textSize="14sp"
         tools:text="message" />
 
+    <TextView
+        android:id="@+id/date_and_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        tools:text="'24.11.25.(토) 18:12"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="8dp"/>
+
 </LinearLayout>
